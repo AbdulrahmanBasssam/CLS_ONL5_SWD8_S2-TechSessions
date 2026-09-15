@@ -15,6 +15,7 @@ class AddTasksScreen extends StatefulWidget {
 class _AddTasksScreenState extends State<AddTasksScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +58,7 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
                 } else {
                   context.read<TasksCubit>().addTask(
                     Task(
+                      id: DateTime.now().millisecondsSinceEpoch.toString(),
                       title: titleController.text,
                       description: descriptionController.text,
                     ),

@@ -16,16 +16,16 @@ class CartProvider extends ChangeNotifier {
     await CartDb().addProduct(product);
   }
 
-  void removeFromCart(Product product) {
+  Future<void> removeFromCart(Product product) async {
     cart.remove(product);
     notifyListeners();
-    // Remove from local storage
+    await CartDb().deleteProduct(product.id);
   }
 
-  void clearCart() {
+  Future<void> clearCart() async {
     cart.clear();
     notifyListeners();
-    // Clear local storage
+    await CartDb().clearCart();
   }
 
   double get totalPrice {

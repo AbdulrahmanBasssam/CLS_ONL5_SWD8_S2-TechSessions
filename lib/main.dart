@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'provider/cart_db.dart';
-import 'provider/cart_provider.dart';
-import 'provider/products_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_r5_s2/cubit/tasks_db.dart';
+import 'cubit/add_tasks_screen.dart';
+import 'cubit/tasks_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await CartDb().initDatabase();
+  await TasksDb.init();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => CartProvider(),
-      child: MyInitialApp(),
-    ),
+    BlocProvider(create: (context) => TasksCubit(), child: MyInitialApp()),
   );
 }
 
@@ -21,7 +18,7 @@ class MyInitialApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProductsScreen(),
+      home: AddTasksScreen(),
     );
   }
 }

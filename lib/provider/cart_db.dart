@@ -23,6 +23,15 @@ class CartDb {
     await database.insert(tableName, product.toMap());
   }
 
+  Future<void> updateProduct(Product product) async {
+    await database.update(
+      tableName,
+      product.toMap(),
+      where: 'id = ?',
+      whereArgs: [product.id],
+    );
+  }
+
   Future<List<Product>> getCartItems() async {
     final List<Map<String, dynamic>> maps = await database.query(tableName);
     List<Product> products = [];
@@ -30,5 +39,13 @@ class CartDb {
       products.add(Product.fromMap(map));
     }
     return products;
+  }
+
+  Future<void> deleteProduct(int id) async {
+    await database.delete(tableName, where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<void> clearCart() async {
+    await database.delete(tableName);
   }
 }
