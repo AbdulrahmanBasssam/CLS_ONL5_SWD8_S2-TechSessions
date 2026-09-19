@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_r5_s2/cubit/tasks_db.dart';
 import 'cubit/add_tasks_screen.dart';
 import 'cubit/tasks_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await TasksDb.init();
+  // await TasksDb.init();
   runApp(
     BlocProvider(create: (context) => TasksCubit(), child: MyInitialApp()),
   );

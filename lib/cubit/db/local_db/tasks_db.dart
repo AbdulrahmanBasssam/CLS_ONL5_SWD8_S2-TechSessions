@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'task.dart';
+import '../../task.dart';
 import 'task_adapter.dart';
 
 class TasksDb {
