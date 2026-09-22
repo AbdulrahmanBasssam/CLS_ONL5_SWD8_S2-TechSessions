@@ -19,6 +19,9 @@ class TasksRemoteDb {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
+      final taskMap = jsonDecode(response.body);
+      final savedTask = Task.fromMap(taskMap);
+      task.id = savedTask.id;
       return true;
     } else {
       return false;
@@ -52,7 +55,7 @@ class TasksRemoteDb {
 
   static Future<bool> removeAllTasks(List<Task> tasks) async {
     for (var task in tasks) {
-      await removeTask(task.id);
+      await removeTask(task.id!);
     }
     return true;
   }

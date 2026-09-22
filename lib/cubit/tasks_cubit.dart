@@ -29,7 +29,7 @@ class TasksCubit extends Cubit<List<Task>> {
     newList.remove(task);
     emit(newList);
     // await TasksDb.removeTask(task.id);
-    await TasksRemoteDb.removeTask(task.id);
+    await TasksRemoteDb.removeTask(task.id!);
   }
 
   Future<void> removeAllTasks() async {
