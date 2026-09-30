@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/add_tasks_screen.dart';
-import 'cubit/tasks_cubit.dart';
+import 'animation/explicit_animation.dart';
+import 'preparation_examples/animations/exiplicit/explicit_animation.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // await TasksDb.init();
-  runApp(
-    BlocProvider(create: (context) => TasksCubit(), child: MyInitialApp()),
-  );
+void main() {
+  runApp(MyInitialApp());
 }
 
 class MyInitialApp extends StatelessWidget {
@@ -17,7 +12,7 @@ class MyInitialApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AddTasksScreen(),
+      home: ExplicitAnimationScreen(),
     );
   }
 }
