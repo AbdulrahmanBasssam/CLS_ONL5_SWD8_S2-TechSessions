@@ -17,9 +17,26 @@ class _AddTasksScreenState extends State<AddTasksScreen> {
   final TextEditingController descriptionController = TextEditingController();
 
   @override
+  void dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Task')),
+      appBar: AppBar(
+        title: const Text('Add Task'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<TasksCubit>().signOut();
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(

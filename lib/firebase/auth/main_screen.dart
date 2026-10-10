@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../cubit/add_tasks_screen.dart';
 import 'auth_screen.dart';
-import 'home_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -12,7 +12,7 @@ class MainScreen extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, userSnapshot) {
         if (userSnapshot.hasData && userSnapshot.data != null) {
-          return HomeScreenFire(user: userSnapshot.data!);
+          return AddTasksScreen();
         } else {
           return FirebaseUIAuth();
         }

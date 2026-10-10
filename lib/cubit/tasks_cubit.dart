@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'db/remote_db/tasks_remote_db.dart';
+import 'db/firebase_db/firebasedb.dart';
 import 'task.dart';
 
 // import 'db/local_db/tasks_db.dart';
@@ -10,32 +11,25 @@ class TasksCubit extends Cubit<List<Task>> {
   }
 
   Future<void> init() async {
-    // final tasks = await TasksDb.getTasks();
-    final tasks = await TasksRemoteDb.getTasks();
-    if (tasks != null && tasks.isNotEmpty) {
+    Firebasedb.getTasks().listen((tasks) {
       emit(tasks);
-    }
+    });
   }
 
   Future<void> addTask(Task task) async {
-    final newList = [...state, task];
-    emit(newList);
-    // await TasksDb.addOrUpdateTask(task);
-    await TasksRemoteDb.addTask(task);
+    await Firebasedb.addTask(task);
   }
 
   Future<void> removeTask(Task task) async {
-    final newList = [...state];
-    newList.remove(task);
-    emit(newList);
-    // await TasksDb.removeTask(task.id);
-    await TasksRemoteDb.removeTask(task.id!);
+    await Firebasedb.deleteTask(task);
   }
 
   Future<void> removeAllTasks() async {
-    final tasks = [...state];
+    await Firebasedb.deleteAllTask();
+  }
+
+  Future<void> signOut() async {
     emit([]);
-    // await TasksDb.removeAllTasks();
-    await TasksRemoteDb.removeAllTasks(tasks);
+    await FirebaseAuth.instance.signOut();
   }
 }
