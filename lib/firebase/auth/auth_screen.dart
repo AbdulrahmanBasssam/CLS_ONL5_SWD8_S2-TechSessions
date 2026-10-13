@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,11 @@ class FirebaseUIAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return SignInScreen(
       providers: [EmailAuthProvider()],
+      actions: [
+        AuthStateChangeAction<SignedIn>((context, state) {
+          FirebaseMessaging.instance.subscribeToTopic('signed_in_users');
+        }),
+      ],
       headerBuilder: (context, constraints, shrinkOffset) {
         return const Padding(
           padding: EdgeInsets.all(20),
