@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '933350747230',
     projectId: 'depi5s-2',
     storageBucket: 'depi5s-2.firebasestorage.app',
-    iosBundleId: 'com.example.flutterR5S2',
+    iosBundleId: 'com.depi.tasksmanager',
   );
 }

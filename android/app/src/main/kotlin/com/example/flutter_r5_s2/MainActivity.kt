@@ -1,4 +1,4 @@
-package com.example.flutter_r5_s2
+package com.depi.tasksmanager
 
 import io.flutter.embedding.android.FlutterActivity
 

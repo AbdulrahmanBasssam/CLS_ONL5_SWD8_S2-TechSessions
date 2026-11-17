@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
         if (userSnapshot.hasData && userSnapshot.data != null) {
           return AddTasksScreen();
         } else {
-          return CustomLogin();
+          return FirebaseUIAuth();
         }
       },
     );
